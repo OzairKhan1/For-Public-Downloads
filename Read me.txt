@@ -8,7 +8,7 @@
 
 1. Download the file.
 2. Extract it using WinRAR or 7-Zip.
-3. Double-click `run_app.bat`.
+3. Double-click `Run_Setup.bat`.
 4. Browser will open automatically!
 
 ✅ No Python installation needed.
