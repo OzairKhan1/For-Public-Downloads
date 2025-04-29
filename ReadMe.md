@@ -2,7 +2,9 @@
 
 ## 📥 Download
 
-[Click here to download FriendsyScrapperApp.rar](https://www.mediafire.com/file/ptm1vdnvbmv7k23/Friendsy+Scrapper.rar/file)
+[Click here to download 1 FriendsyScrapperApp.rar Web-driver and Selenium] (https://www.mediafire.com/file/sye97xaqra27git/1+Friendsy+Scrapper.rar/file)
+[Click here to download 2 FriendsyScrapperApp.rar using bs4 and https ](https://www.mediafire.com/file/ptm1vdnvbmv7k23/Friendsy+Scrapper.rar/file)
+
 
 ## 🚀 How to Use
 
