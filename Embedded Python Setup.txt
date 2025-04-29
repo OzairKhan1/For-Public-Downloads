@@ -1,0 +1,67 @@
+ 1. Download Embedded Python
+Go to: Download Python 3.11.3 Embedded ZIP
+
+Download the latest embedded version (e.g., python-3.11.3-embed-amd64.zip)
+
+Extract it to your project folder:
+
+
+
+2: Keep the Embedded Python file inside a folder
+this is the tree
+
+YourProject/
+└── python-embed/
+    ├── python.exe
+    ├── python311.zip
+    ├── Lib/
+    ├── Scripts/  (will be created after pip installation)
+    ├── python311._pth
+
+3: Download the File:  get-pip.py using this url : https://bootstrap.pypa.io/get-pip.py   (Save the file .py)
+
+4: go to the embedded folder using cmd. then run this command : python get-pip.py
+
+
+5: Fix the _pth file
+Open python311._pth (or whatever version you have).
+
+Edit it to look like this: 
+
+python311.zip
+.
+Lib
+Scripts
+import site
+
+6: Use the pip command to install all the necessary packages 
+python -m pip install streamlit pandas requests beautifulsoup4 openpyxl matplotlib
+
+
+7: In this step also add the .py (main Code) to your project folder not inside the embedded file
+
+the structure should be like this
+YourProject/
+├── Friendsy Scrapper.py
+└── python-embed/
+    ├── python.exe
+    ├── Lib/
+    ├── Scripts/
+    ├── (pip installed packages)
+
+
+
+8: Once the project is prepared then create a .bat file to run easily 
+the .bat should be as follow
+
+@echo off
+title Friendsy Scrapper Launcher
+echo Launching App...
+
+REM Set PATH to embedded Python
+set PATH=%~dp0python-embed;%PATH%
+
+REM Launch Streamlit app
+python -m streamlit run "Friendsy Scrapper.py" --server.headless=false
+
+pause

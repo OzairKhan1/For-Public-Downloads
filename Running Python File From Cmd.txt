@@ -1,0 +1,12 @@
+1: Copy the Path of the Folder Where the File is located       : C:\Users\bms\PycharmProjects\my-pesco-project
+
+Then Use the following command in Cmd to run the Script. 
+
+for Streamlit file 
+
+cd C:\Users\bms\PycharmProjects\my-pesco-project
+.venv\Scripts\activate
+streamlit run Fapp.py
+
+
+if the File is Python Code rather than Streamlit replace the "streamlt run " with "python Name of file.py"
