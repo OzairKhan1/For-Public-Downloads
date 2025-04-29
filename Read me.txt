@@ -1,0 +1,17 @@
+# Friendsy Scrapper App
+
+## 📥 Download
+
+[Click here to download FriendsyScrapperApp.rar](https://www.mediafire.com/file/ptm1vdnvbmv7k23/Friendsy+Scrapper.rar/file)
+
+## 🚀 How to Use
+
+1. Download the file.
+2. Extract it using WinRAR or 7-Zip.
+3. Double-click `run_app.bat`.
+4. Browser will open automatically!
+
+✅ No Python installation needed.
+✅ Fully portable app.
+
+---
