@@ -1,0 +1,103 @@
+From Lec # 04 
+
+1: The number of control connections b/w vEdge and vSmart will depends on the number of Transportations
+2: vEdge will share Tlocs via omp (overlay management protocol) to vSmart and the vSmart will share the same
+tlocs with other vEdge and cEdge, through these tlocs the Ipsec connection will establish
+	Tlocs is the combination of these 3
+	1: System-ip (This is a unique id for vEdge e.g 1.1.1.1 like router-id in ospf )
+	2: color  (it refers to the transportation. it could be biz-internet or mpls )
+	3: Encapsulation (Ipsec or Gre) 
+
+3: The number of Ipsec connections depeneds upon the number of tlocs or transportation b/w vEdges and cEdges
+4: Irrespective of the number of Tlocs there will be only 1 OMP sessions b/w vEdge and vSmart
+	Multiple control connections ≠ multiple OMP sessions
+	✔ Only one OMP session per vEdge to vSmart
+5: vEdges in the same site will not make an Ipsec connection due to same Site-Id
+6: DTLS tunnels are control connections that run between:
+
+	vEdge ↔ vSmart
+
+	vEdge ↔ vManage
+
+	vSmart ↔ vManage
+
+	vSmart ↔ vSmart (if applicable)
+
+	All vEdges initially form a temporary DTLS connection with vBond, which acts as the orchestrator. Once validated, vBond provides the IP addresses of vSmart and vManage to the vEdge.
+
+	Then, vEdges establish permanent control connections with both vSmart (for OMP) and vManage (for monitoring/configuration).
+
+7: ✅ Connection Types Between Controllers:
+	Connection	Type	Purpose
+	vEdge ↔ vBond	Temporary	Only for initial authentication and orchestration.
+	vBond ↔ vSmart	Temporary	Used only to relay information during vEdge onboarding.
+	vBond ↔ vManage	Temporary	Same — for coordination during device bring-up.
+	vManage ↔ vSmart		Permanent	Control and policy synchronization, configuration distribution.
+
+
+8: The number of BFD (Bidirection Failure Detection) sessions also depends on the number of Transportation
+
+
+9: VPN 0 is the foundation of SD-WAN. Without it, your router can't even "join the network." It is part of the underlay network,
+	 and it powers the connectivity that your overlay (Service VPNs) runs on. 
+10: All Connections to the Transportation will be under Vpn 0. 
+
+
+
+--------------------------------------- Tempelete in Sd-Wan----------------------------------
+WE have 2 type of templets 
+1: Feature Tempelete
+2: Device Tempelete
+
+1 => In the Feature Temp, the temp is design for the an individual Feature like
+a: interface g0/0, g0/1 , g0/2 depeneds how many interface or in use on device , like vEdge
+b: Vpn 0 , Vpn 512 , service vpn like Vpn 10 e.t.c
+c: Ospf, Bgp , if in use
+d: system Tempelete 
+and more depends upon their usage in the configuration
+
+2 => In Device Tempelete all these Feature Temp are combine to make a single "Feature base device Tempelete". 
+
+Once the Device temp is design we can easily attach to any device. 
+Make sure while designing the feature temp, the variables are needed to be keep in mind. 
+We have 3 options
+1: default
+2: global
+3: Device specific
+
+----------------------------------------------------------------------------------------------------
+
+Main Configuration That is done on the vEdges  (Vpn 0 and System Configuration) 
+1: Configuration of Ip
+2: Getting a Verified Certificate and Serial number via CA Server (put this in vBond and vManage to bring the device up)
+3: System Configuration on the vEdge (it consists of 6 main configurations) even if the serail number is paste in the above step the device will not be in vManage
+	1: host-name
+	2: system-ip
+	3: site-id
+	4: organization-name
+	5: vBond ip
+	6: clock timezone    (Asia/Kolkata) 
+	
+Main Configuration that is Done on Vpn 0
+1: Vpn 0
+2: interface of the router that is connected to transportation either biz-Internet or Mpls
+3: ip address, 192.168.1.1/24 (no like config on router with maks of 255.255.255.0) no shut
+4: tunnel-interface
+5: allow-service all
+6: allow-service sshd
+7: allow-service netconf
+8: ip route (0.0.0.0/0 nexthop ) if necessary 
+9: commit. (In SD-Wan this is very Important line to enter. Otherwise no configuration will be updated or saved ) 
+
+
+-------------------------------------- Main Commands---------------------------
+1: show ipsec inbound connection
+2: show ipsec outbound connection
+3: show omp tlocs
+4: show ip route omp
+5: show omp peers          (This will give the session b/w vSmart and all other devices )
+5: color mpls restict or color biz-internt restrict ( The restrict is very important at the end of the color to avoid ipsec of different color)
+
+
+
+10: request software reset (for reseting the device to Factory Configuration)
