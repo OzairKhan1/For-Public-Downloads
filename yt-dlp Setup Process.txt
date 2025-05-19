@@ -3,13 +3,26 @@
 3: download ffmpeg.z file from here: https://www.gyan.dev/ffmpeg/builds/
 4: Extract the ffmpeg file in the same location 
 
-To download Whole Playlist
-
-yt-dlp -f "bestvideo+bestaudio/best" --merge-output-format mp4 --ffmpeg-location "E:\yt-dlp Setup\ffmpeg\bin" --cookies cookies.txt "https://youtu.be/vnm2yd1f-a4?list=PLmgyxPj-5jn5aB1EBtGnui2aSFLB_D2nX&t=9576"
+1: To download Whole Playlist
 
 
-To Download a single video OR a single video  from playlist:
+yt-dlp -f "bestvideo+bestaudio/best" --merge-output-format mp4 --ffmpeg-location "E:\yt-dlp Setup\ffmpeg\bin" --cookies cookies.txt "Paste Your URL Here Inside the Quotes"
 
-yt-dlp -f "bestvideo+bestaudio/best" --merge-output-format mp4 --ffmpeg-location "E:\yt-dlp Setup\ffmpeg\bin" --cookies cookies.txt --no-playlist "https://www.youtube.com/watch?v=dL4Vn4hKxQ4"
+
+2: To Download a single video from playlist:
+
+yt-dlp -f "bestvideo+bestaudio/best" --merge-output-format mp4 --ffmpeg-location "E:\yt-dlp Setup\ffmpeg\bin" --cookies cookies.txt --no-playlist "Paste Your URL Here Inside the Quotes"
+
+
+
+
+3: To download whole playlist in 720p Forcing
+
+yt-dlp -f "bestvideo[height<=720]+bestaudio/best[height<=720]" --merge-output-format mp4 --ffmpeg-location "E:\yt-dlp Setup\ffmpeg\bin" --cookies cookies.txt "Paste Your URL Here Inside the Quotes"
+
+
+4: Start Playlist from a particular Video 
+
+yt-dlp -f "bestvideo[height<=720]+bestaudio/best[height<=720]" --merge-output-format mp4 --ffmpeg-location "E:\yt-dlp Setup\ffmpeg\bin" --cookies cookies.txt --playlist-start 3 "Paste Your URL Here Inside the Quotes"
 
  
