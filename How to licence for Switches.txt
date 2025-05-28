@@ -1,0 +1,17 @@
+Step 1: SSh to Vmware workstation pro from solar putty using the ip of Vmware shown on the screen of Vmware
+Step 2: the username and password for vmware is gns3.
+Step 3: Navigate to Shell in vmware
+Step 4: run the following commands
+	sudo apt-get update
+	sudo apt-get install python                    (This Process might fail, But try couple of times or run the first command again) 
+ 	wget https://raw.githubusercontent.com/obscur95/gns3-server/master/IOU/CiscoIOUKeygen.py
+	sudo chmod +x CiscoIOUKeygen.py
+	sudo ./CiscoIOUKeygen.py
+
+
+the licence will be shown on the screen . copy the licennse and navigate to gns3.> Edit > preferences>ios on UNIX . hit and 
+the box will be shown copy the license overther . apply and ok . Boom . YOur are good to go. 
+	
+This command below is used to Junction Gns3 from Local Disk C to any other Disk like I have shifted to E in my case:
+
+mklink /J "C:\Users\Ozair Khan\AppData\Local\GNS3" "E:\Gns3Data"
