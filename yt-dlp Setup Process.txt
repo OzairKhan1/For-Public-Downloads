@@ -25,4 +25,23 @@ yt-dlp -f "bestvideo[height<=720]+bestaudio/best[height<=720]" --merge-output-fo
 
 yt-dlp -f "bestvideo[height<=720]+bestaudio/best[height<=720]" --merge-output-format mp4 --ffmpeg-location "E:\yt-dlp Setup\ffmpeg\bin" --cookies cookies.txt --playlist-start 3 "Paste Your URL Here Inside the Quotes"
 
+
+------------------------------------------- Automaation For Playlist -------------------------------------------------------
+1: Paster this notepad and saveas .bat file: 
+
+@echo off
+set /p PLAYLIST_URL=Enter playlist URL: 
+yt-dlp -f "bestvideo[height<=720]+bestaudio/best[height<=720]" --merge-output-format mp4 --ffmpeg-location "E:\yt-dlp Setup\ffmpeg\bin" --cookies cookies.txt "%PLAYLIST_URL%"
+pause
+
+2: Create a desktop shortcut. 
+3: rightclick and go to properties. and paste this " cmd.ext/c " before the text in target field so the whole address will look like this: cmd.exe /c "C:\Path\To\YourScript.bat"
+4: Now you can easily pin to taskbar
+
+The same can be used for downloading video and playlist
+
+
+
+
+
  
