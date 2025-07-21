@@ -35,7 +35,7 @@ yt-dlp -f "bestvideo[height<=720]+bestaudio/best[height<=720]" --merge-output-fo
 pause
 
 2: Create a desktop shortcut. 
-3: rightclick and go to properties. and paste this " cmd.ext/c " before the text in target field so the whole address will look like this: cmd.exe /c "C:\Path\To\YourScript.bat"
+3: rightclick and go to properties. and paste this " cmd.exe /c " before the text in target field so the whole address will look like this: cmd.exe /c "E:\yt-dlp Setup\Playlist Downloader.bat"        : No matter what disk is 
 4: Now you can easily pin to taskbar
 
 The same can be used for downloading video and playlist
