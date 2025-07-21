@@ -40,6 +40,11 @@ pause
 
 The same can be used for downloading video and playlist
 
+----------------------------------- For Videos--------------------------------
+@echo off
+set /p VIDEO_URL=Enter video URL: 
+yt-dlp -f "bestvideo[height<=720]+bestaudio/best[height<=720]" --merge-output-format mp4 --ffmpeg-location "E:\yt-dlp Setup\ffmpeg\bin" --cookies cookies.txt --no-playlist "%VIDEO_URL%"
+pause
 
 
 
