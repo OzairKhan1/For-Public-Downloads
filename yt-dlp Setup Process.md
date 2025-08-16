@@ -3,27 +3,35 @@
 3: download ffmpeg.z file from here: https://www.gyan.dev/ffmpeg/builds/
 4: Extract the ffmpeg file in the same location 
 
-1: To download Whole Playlist
+1: **To download Whole Playlist**
 
 
 yt-dlp -f "bestvideo+bestaudio/best" --merge-output-format mp4 --ffmpeg-location "E:\yt-dlp Setup\ffmpeg\bin" --cookies cookies.txt "Paste Your URL Here Inside the Quotes"
 
 
-2: To Download a single video from playlist:
+2: **To Download a single video from playlist:**
 
 yt-dlp -f "bestvideo+bestaudio/best" --merge-output-format mp4 --ffmpeg-location "E:\yt-dlp Setup\ffmpeg\bin" --cookies cookies.txt --no-playlist "Paste Your URL Here Inside the Quotes"
 
 
 
 
-3: To download whole playlist in 720p Forcing
+3: **To download whole playlist in 720p Forcing**
 
 yt-dlp -f "bestvideo[height<=720]+bestaudio/best[height<=720]" --merge-output-format mp4 --ffmpeg-location "E:\yt-dlp Setup\ffmpeg\bin" --cookies cookies.txt "Paste Your URL Here Inside the Quotes"
 
 
-4: Start Playlist from a particular Video 
+4: **Start Playlist from a particular Video** 
 
 yt-dlp -f "bestvideo[height<=720]+bestaudio/best[height<=720]" --merge-output-format mp4 --ffmpeg-location "E:\yt-dlp Setup\ffmpeg\bin" --cookies cookies.txt --playlist-start 3 "Paste Your URL Here Inside the Quotes"
+
+5: **Download a Range of Videos from a Playlist**
+yt-dlp -f "bestvideo[height<=720]+bestaudio/best[height<=720]" ^
+--merge-output-format mp4 ^
+--ffmpeg-location "E:\yt-dlp Setup\ffmpeg\bin" ^
+--cookies cookies.txt ^
+--playlist-start 5 --playlist-end 15 ^
+"Paste Your URL Here Inside the Quotes"
 
 
 ------------------------------------------- Automaation For Playlist -------------------------------------------------------
@@ -38,7 +46,7 @@ pause
 3: rightclick and go to properties. and paste this " cmd.exe /c " before the text in target field so the whole address will look like this: cmd.exe /c "E:\yt-dlp Setup\Playlist Downloader.bat"        : No matter what disk is 
 4: Now you can easily pin to taskbar
 
-The same can be used for downloading video and playlist
+**The same can be used for downloading video and playlist**
 
 ----------------------------------- For Videos--------------------------------
 @echo off
@@ -47,6 +55,33 @@ yt-dlp -f "bestvideo[height<=720]+bestaudio/best[height<=720]" --merge-output-fo
 pause
 
 
+---------------------------------- For Range Downloader ------------------------
+**Paste the below Script in notepad and save as .bat file**
+
+@echo off
+title YouTube Playlist Downloader (yt-dlp)
+
+:: Ask user for inputs
+set /p url=Enter Playlist URL: 
+set /p start=Enter Start Video Number: 
+set /p end=Enter End Video Number: 
+
+echo.
+echo Downloading videos from %start% to %end%...
+echo.
+
+:: Run yt-dlp with provided values
+yt-dlp -f "bestvideo[height<=720]+bestaudio/best[height<=720]" ^
+--merge-output-format mp4 ^
+--ffmpeg-location "E:\yt-dlp Setup\ffmpeg\bin" ^
+--cookies cookies.txt ^
+--playlist-start %start% --playlist-end %end% ^
+"%url%"
+
+echo.
+echo Download complete!
+pause
 
 
  
+
