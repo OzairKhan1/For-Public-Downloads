@@ -1,0 +1,190 @@
+Step 1: Initilize a Github Repository by the command : 
+git init
+
+Step 2: All the files will be waiting for monotoring unless they are added to the repo using command
+git add
+
+Setp 3: Once they are added we need to Commit the changes to replect in logs
+git commit -m "This is my first version "              ::: -m refers for message. it could be anything.
+
+Step 4: We need to push the file or files to the github repository so that people can have access to it. because the github is distributed version platform. 
+git remote set-url origin git@github.com:OzairKhan1/MyDevOps.git
+
+Cmd1: Add the SSH key to your SSH agent 
+eval "$(ssh-agent -s)"
+ssh-add ~/.ssh/id_rsa
+
+Cmd2: For Verification : 
+ssh -T git@github.com
+
+Cmd3: Change the URL to SSH. Put your own info in the following Repo info command
+git remote set-url origin git@github.com:your-username/repository-name.git
+
+Cmd: For Pushing the data into github 
+git push -u origin main     : Replace the "main" with "master"
+
+
+Mian Commands: 
+git init 
+git add
+git commit -m "Write your message overhere"
+git push origin master
+git push -u origin master
+git status
+git remote -v
+git remote add origin <repo-url>
+git diff
+git log 
+git log --oneline
+
+
+===================================================================================================
+Git Problems, Fixes & Professional Workflow — Single File (copy-paste into Notepad)
+===================================================================================================
+
+COMMON PROBLEMS & FIXES
+
+1. Nested Git Repo
+   Error: warning: adding embedded git repository
+   Cause: You ran `git init` inside a cloned repo (created a nested .git).
+   Fix:
+   rm -rf <folder>/.git
+
+2. Push Rejected (Remote has commits you don't)
+   Error: ! \[rejected] main -> main (fetch first)
+   Cause: Remote branch has commits that are not in your local branch.
+   Safe fix (recommended):
+   git checkout main                       // Before below line switch to the branch where old data is present
+   git pull --rebase origin main          // Solved by this line
+   git push origin main                   // this will push everything old and new to the same repo
+   Force overwrite (dangerous; destroys remote history):
+   git push origin main --force            // We can override the old repo by new contents
+
+3. If you want to push changes to a new branch (safe, non-destructive): // One Solution if your local file is 
+ahead of the Git Repo. and push throws an error. the best way is to create a new branch and push the changes
+   git checkout -b feature/my-branch
+   git add .
+   git commit -m "Work done"
+   git push -u origin feature/my-branch
+
+PROFESSIONAL GIT WORKFLOW (team-friendly, single-file reference)
+
+1. Clone once:               // No need for "git init" once Clone is done. 
+   git clone \<repo\_url>
+   cd <project-folder>
+
+2. Always update main before starting work:
+   git checkout main
+   git pull origin main
+
+3. Create a feature branch for your work:
+   git checkout -b feature/<short-descriptive-name>
+
+4. Do work → stage → commit:
+   git add .
+   git commit -m "feat: short description of change"
+
+5. Push the feature branch:
+   git push -u origin feature/<short-descriptive-name>
+
+6. Open a Pull Request (PR) on GitHub, request review, merge after approval.
+
+7. After merge, sync your local main and clean up:
+   git checkout main
+   git pull origin main
+   git branch -d feature/<short-descriptive-name>
+
+QUICK DEBUG / INSPECTION COMMANDS
+
+Check current branch:
+git branch
+
+Check remote branches:
+git branch -r
+
+Fetch remote updates without merging (inspect before changing history):
+git fetch origin
+
+See remote commits you don't have:
+git log HEAD..origin/main --oneline
+
+If you accidentally ran git init inside a cloned repo:
+ls -la <folder>    # look for .git inside subfolder
+rm -rf <folder>/.git
+
+========================================================================================================
+GOOD PRACTICES & TIPS
+========================================================================================================
+* Never run `git init` after `git clone`. Cloning already creates `.git`.
+* Use feature branches (feature/, fix/, chore/) to keep `main` stable.
+* Use `git pull --rebase origin main` to integrate remote changes cleanly.
+* Avoid `--force` unless you absolutely know the remote can be overwritten.
+* Use descriptive commit messages (conventional commit style helps: feat:, fix:, chore:).
+* Before pushing, run `git status` and `git log --oneline --graph --decorate -10` if unsure.
+* If authentication asks for a password on HTTPS, use a Personal Access Token (PAT) as the password.
+
+========================================================================================================
+COMMANDS SUMMARY (copyable list)
+========================================================================================================
+git clone \<repo\_url>
+cd <project-folder>
+git status
+git checkout main
+git pull origin main
+git checkout -b feature/<name>
+git add .
+git commit -m "feat: short message"
+git push -u origin feature/<name>
+git pull --rebase origin main
+git push origin main
+git push origin main --force      // if we want to force the changes. 
+git fetch origin
+git log HEAD..origin/main --oneline
+rm -rf <folder>/.git
+git restore --staged .          // Restore the Files and Dirs Stages for deletion
+git restore .                 // If the files are not visible from above command run this one to get files back
+
+Cleaning The Old Directory and pushing new data
+git clone 
+cd your-repo
+rm -rf *                            // Delete everything not the history
+git add -A                         // git add -A = “stage absolutely everything that has changed, no matter if it’s new, modified, or deleted”
+git commit -m "Clean repository"
+git push origin main
+
+
+========================================================================================================
+Delete Branch in Git
+========================================================================================================
+
+==============================
+ DELETE A BRANCH
+==============================
+From GitHub UI:
+1. Go to your repo on GitHub
+2. Click "Branches" tab (usually above file list or under "Code")
+3. Find the branch you want to delete
+4. Click the trash/bin icon next to it
+   (You cannot delete the default branch e.g. main)
+
+From Git commands:
+
+Delete branch locally:
+   git branch -d branch-name      # safe, will refuse if unmerged
+   git branch -D branch-name      # force delete
+
+Delete branch on remote (GitHub):
+   git push origin --delete branch-name
+
+
+
+
+========================================================================================================
+
+Q: what is the diff b/w git pull and git fetch:
+	git fetch  = download new commits/branches from remote, but DO NOT change local branch
+	git pull   = fetch + merge (or rebase) into current branch, updates local branch immediately
+
+Rule of thumb:
+- Use git fetch when you only want to see what changed
+- Use git pull when you are ready to bring those changes into your branch
