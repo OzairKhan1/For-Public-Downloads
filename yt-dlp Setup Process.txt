@@ -1,7 +1,9 @@
-1: Download yt-dlp using this command " pip install -U yt-dlp " 
+1: Download yt-dlp using this command " pip install -U yt-dlp " or yt-dlp.exe from github link searc google or chatGpt
 2: Install Chrome Extension to download Cookies. Any one will work but I used this one: download here: https://chromewebstore.google.com/detail/get-cookiestxt-locally/cclelndahbckbenkjhflpdbgdldlbecc
 3: download ffmpeg.z file from here: https://www.gyan.dev/ffmpeg/builds/
 4: Extract the ffmpeg file in the same location 
+5: Adding to path yt-dlp using this command from Power Shell (run as adminstration) . I have yt-dlp.exe located at this locaiton: "E:\yt-dlp Setup\ffmpeg\". 
+[Environment]::SetEnvironmentVariable("Path", $env:Path + ";E:\yt-dlp Setup\ffmpeg\", [System.EnvironmentVariableTarget]::Machine)
 
 1: **To download Whole Playlist**
 
@@ -84,4 +86,5 @@ pause
 
 
  
+
 
