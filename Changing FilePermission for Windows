@@ -1,0 +1,55 @@
+===============================
+Windows ICACLS Permissions Cheat Sheet
+===============================
+
+Permission Letters:
+
+F  : Full control 
+     - Read, Write, Execute, Modify, Delete, Change Permissions, Take Ownership
+
+M  : Modify
+     - Read, Write, Execute, Delete
+     - Cannot change permissions or ownership
+
+RX : Read & Execute
+     - Read files
+     - Run / execute files
+     - Enter folders
+
+R  : Read-only
+     - Read files
+     - List folder contents
+
+W  : Write-only
+     - Add / modify file contents
+
+D  : Delete
+     - Delete the file or folder
+
+X  : Execute
+     - Run files or scripts
+     - Enter folder
+
+T  : Take ownership
+     - Used with /grant to allow user to take ownership
+
+===============================
+Usage Examples:
+
+# Grant read-only access to a user
+icacls "C:\path\to\file.txt" /grant "username:R"
+
+# Grant full control to a user
+icacls "C:\path\to\file.txt" /grant "username:F"
+
+# Grant modify access to a user
+icacls "C:\path\to\file.txt" /grant "username:M"
+
+# Grant read & execute access
+icacls "C:\path\to\file.txt" /grant "username:RX"
+
+# Remove inheritance from a file
+icacls "C:\path\to\file.txt" /inheritance:r
+
+# Remove a user's access
+icacls "C:\path\to\file.txt" /remove "username"
